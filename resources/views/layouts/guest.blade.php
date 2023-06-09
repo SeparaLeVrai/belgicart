@@ -21,6 +21,8 @@
         <nav class="grid grid-cols-3 gap-3">
             <a href="{{ route('home') }}">Belgicart</a>
             <a href="{{ route('users') }}">Membres</a>
+            <a href="{{ route('mRelief') }}">Cartes Relief</a>
+            <a href="{{ route('relief') }}">Quizz Relief</a>
             @if (Auth::check())
                 <a href='{{ url('admin/users') }}'>Admin</a>
             @endif

@@ -4,6 +4,8 @@ use App\Http\Controllers\AccueilController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\QuizzController;
+use App\Http\Controllers\MapsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,6 +22,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [AccueilController::class, 'index'])->name('home');
 Route::get('/users', [UserController::class, 'index'])->name('users');
 Route::get('/users/{pseudo}', [UserController::class, 'show'])->name('users.profile');
+Route::get('/quizz/relief', [QuizzController::class, 'relief'])->name('relief');
+Route::get('/maps/relief', [MapsController::class, 'relief'])->name('mRelief');
 
 Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::resource('users', AdminController::class);
