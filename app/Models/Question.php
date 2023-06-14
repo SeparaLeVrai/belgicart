@@ -9,19 +9,24 @@ class Question extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'difficulte_id',
+        'categorie_id',
+    ];
+
     public function reponse()
     {
         return $this->hasMany(Reponse::class);
     }
 
-    public function levels(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function difficultes(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(Difficulte::class);
+        return $this->belongsTo(Difficulte::class, 'difficulte_id')->withDefault(['level', 'Débutant']);
     }
 
-    public function fields(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function categories(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(Categories::class);
+        return $this->belongsTo(Categories::class, 'categorie_id')->withDefault(['nom', 'Aléatoire']);
     }
 
     public $timestamps = false;

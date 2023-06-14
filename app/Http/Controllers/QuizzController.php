@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 
 class QuizzController extends Controller
 {
-    public function relief()
+    public function quizz()
     {
 
-        return view('belgicart.quizz.relief');
+        return view('belgicart.quizz.index');
     }
 }

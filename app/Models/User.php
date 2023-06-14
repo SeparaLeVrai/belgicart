@@ -23,6 +23,7 @@ class User extends Authenticatable
         'password',
         'avatar',
         'pays_id',
+        'niveau_id',
     ];
 
     /**
@@ -46,12 +47,12 @@ class User extends Authenticatable
 
     public function niveaux(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(Niveau::class);
+        return $this->belongsTo(Niveau::class, 'niveau_id');
     }
 
     public function pays(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(Pays::class);
+        return $this->belongsTo(Pays::class, 'pays_id');
     }
 
     public function score()

@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 
 class MapsController extends Controller
 {
-    public function relief()
+    public function maps()
     {
 
-        return view('belgicart.maps.relief');
+        return view('belgicart.maps.index');
     }
 }

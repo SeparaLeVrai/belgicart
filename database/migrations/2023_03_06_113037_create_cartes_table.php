@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('cartes', function (Blueprint $table) {
             $table->id();
             $table->string('leaflet');
-            $table->foreignId('cat_id')->constrained('categories');
+            $table->foreignId('categorie_id')->constrained('categories');
             $table->timestamps();
         });
     }

@@ -13,14 +13,16 @@ class Categories extends Model
     public const HYDROGRAPHIE = 'Hydrographie';
     public const MONUMENTS = 'Monuments';
     public const POPULATION = 'Population';
+    public const INSOLITE = 'Lieux insolites';
 
-    public static function fields(): array
+    public static function categories(): array
     {
         return [
             self::RELIEF,
             self::HYDROGRAPHIE,
             self::MONUMENTS,
             self::POPULATION,
+            self::INSOLITE,
         ];
     }
 

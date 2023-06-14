@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Niveau;
 use Illuminate\Database\Seeder;
 
 class NiveauSeeder extends Seeder
@@ -12,11 +13,23 @@ class NiveauSeeder extends Seeder
     public function run()
     {
         \App\Models\Niveau::create([
-            'grade' => \App\Models\Niveau::ADMIN,
+            'niveau' => \App\Models\Niveau::ADMIN,
         ]);
 
         \App\Models\Niveau::create([
-            'grade' => \App\Models\Niveau::USER,
+            'niveau' => \App\Models\Niveau::USER,
         ]);
+        // $niveaux = [
+        //     [
+        //         'niveau' => 'Administrateur',
+        //     ],
+        //     [
+        //         'niveau' => 'Utilisateur',
+        //     ],
+        // ];
+
+        // foreach ($niveaux as $niveau) {
+        //     Niveau::create($niveau);
+        // }
     }
 }

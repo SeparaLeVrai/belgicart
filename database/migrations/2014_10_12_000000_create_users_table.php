@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('avatar')->nullable();
             $table->string('password');
-            $table->foreignId('pays_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('pays_id')->constrained()->cascadeOnDelete()->nullable();
             $table->foreignId('niveau_id')->constrained()->default(2);
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();

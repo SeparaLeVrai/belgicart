@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Categories;
 use Illuminate\Database\Seeder;
 
 class CategorieSeeder extends Seeder
@@ -26,5 +27,31 @@ class CategorieSeeder extends Seeder
         \App\Models\Categories::create([
             'nom' => \App\Models\Categories::POPULATION,
         ]);
+
+        \App\Models\Categories::create([
+            'nom' => \App\Models\Categories::INSOLITE,
+        ]);
+
+        // $categories = [
+        //     [
+        //         'nom' => 'Relief',
+        //     ],
+        //     [
+        //         'nom' => 'Hydrographie',
+        //     ],
+        //     [
+        //         'nom' => 'Monuments',
+        //     ],
+        //     [
+        //         'nom' => 'Population',
+        //     ],
+        //     [
+        //         'nom' => 'Lieux insolites',
+        //     ],
+        // ];
+
+        // foreach ($categories as $category) {
+        //     Categories::create($category);
+        // }
     }
 }

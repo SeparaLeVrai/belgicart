@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Belgicart</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -21,13 +21,16 @@
         <nav class="grid grid-cols-3 gap-3">
             <a href="{{ route('home') }}">Belgicart</a>
             <a href="{{ route('users') }}">Membres</a>
-            <a href="{{ route('mRelief') }}">Cartes Relief</a>
-            <a href="{{ route('relief') }}">Quizz Relief</a>
-            @if (Auth::check())
+            <a href="{{ route('maps') }}">Cartes</a>
+            <a href="{{ route('quizz') }}">Quizz</a>
+            @if (Auth::check() && Auth::user()->niveau_id === 1)
                 <a href='{{ url('admin/users') }}'>Admin</a>
             @endif
+            <a class="@if (!Auth::check()) hidden @endif" href="{{ route('profile.edit') }}">Profil</a>
             <a class="@if (Auth::check()) hidden @endif" href="{{ route('login') }}">Connexion</a>
-            <form method="POST" action="{{ route('logout') }}" class="@if (!Auth::check()) hidden @endif">
+            <a class="@if (Auth::check()) hidden @endif" href="{{ route('register') }}">Inscription</a>
+            <form method="POST" action="{{ route('logout') }}"
+                class="@if (!Auth::check()) hidden @endif">
                 @csrf
 
                 <x-dropdown-link :href="route('logout')"

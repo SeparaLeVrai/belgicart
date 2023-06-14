@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('question');
             $table->foreignId('reponse1_id')->constrained('reponses');
             $table->foreignId('reponse2_id')->constrained('reponses');
-            $table->foreignId('cat_id')->constrained('categories');
-            $table->foreignId('level_id')->constrained('difficultes');
+            $table->foreignId('categorie_id')->constrained('categories');
+            $table->foreignId('difficulte_id')->constrained('difficultes');
             $table->timestamps();
         });
     }

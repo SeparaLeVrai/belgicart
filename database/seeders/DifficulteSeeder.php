@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Difficulte;
 use Illuminate\Database\Seeder;
 
 class DifficulteSeeder extends Seeder
@@ -22,5 +23,21 @@ class DifficulteSeeder extends Seeder
         \App\Models\Difficulte::create([
             'level' => \App\Models\Difficulte::EXPERT,
         ]);
+
+        // $difficultes = [
+        //     [
+        //         'level' => 'Débutant',
+        //     ],
+        //     [
+        //         'level' => 'Intermédiaire',
+        //     ],
+        //     [
+        //         'level' => 'Expert',
+        //     ],
+        // ];
+
+        // foreach ($difficultes as $difficulte) {
+        //     Difficulte::create($difficulte);
+        // }
     }
 }

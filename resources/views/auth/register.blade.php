@@ -1,13 +1,21 @@
     <x-guest-layout>
-        <form method="POST" action="{{ route('register') }}">
+        <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
             @csrf
+
+            <!-- Avatar -->
+            {{-- <div>
+                <x-input-label for='avatar' :value="__('Avatar')" />
+                <input id="avatar" name="avatar" type="file" class="mt-1 block w-full" required autofocus
+                    autocomplete="avatar" />
+                <x-input-error class="mt-2" :messages="$errors->get('avatar')" />
+            </div> --}}
 
             <!-- Name -->
             <div>
-                <x-input-label for="name" :value="__('Name')" />
-                <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')"
+                <x-input-label for="pseudo" :value="__('Pseudo')" />
+                <x-text-input id="pseudo" class="block mt-1 w-full" type="text" name="pseudo" :value="old('pseudo')"
                     required autofocus autocomplete="name" />
-                <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                <x-input-error :messages="$errors->get('pseudo')" class="mt-2" />
             </div>
 
             <!-- Email Address -->
@@ -37,6 +45,18 @@
 
                 <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
             </div>
+
+            <!-- Pays de résidence -->
+            <x-input-label for="pays_id" :value="__('Pays')" />
+            <select id="pays_id" name="pays_id"
+                class="block mt-1 w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                required>
+                @foreach ($countries as $country)
+                    <option value='{{ $country->id }}'>
+                        {{ $country->pays }}
+                    </option>
+                @endforeach
+            </select>
 
             <div class="flex items-center justify-end mt-4">
                 <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"

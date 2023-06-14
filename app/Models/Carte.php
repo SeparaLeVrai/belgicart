@@ -9,9 +9,13 @@ class Carte extends Model
 {
     use HasFactory;
 
-    public function fields(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    protected $fillable = [
+        'categorie_id',
+    ];
+
+    public function categories(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(Categories::class);
+        return $this->belongsTo(Categories::class, 'categorie_id')->withDefault(['nom' => 'Aléatoire']);
     }
 
     public $timestamps = false;

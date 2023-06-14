@@ -13,7 +13,7 @@ class Difficulte extends Model
     public const AMATEUR = 'Amateur';
     public const EXPERT = 'Expert';
 
-    public static function levels(): array
+    public static function difficultes(): array
     {
         return [
             self::DEBUTANT,

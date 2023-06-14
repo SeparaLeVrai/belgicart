@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('difficultes', function (Blueprint $table) {
             $table->id();
-            $table->enum('level', \App\Models\Difficulte::levels());
+            $table->enum('level', \App\Models\Difficulte::difficultes());
             $table->timestamps();
         });
     }

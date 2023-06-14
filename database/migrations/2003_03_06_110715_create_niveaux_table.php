@@ -13,7 +13,7 @@ return new class() extends Migration
     {
         Schema::create('niveaux', function (Blueprint $table) {
             $table->id();
-            $table->enum('grade', \App\Models\Niveau::niveaux());
+            $table->enum('niveau', \App\Models\Niveau::niveaux());
             $table->timestamps();
         });
     }
@@ -23,6 +23,6 @@ return new class() extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('roles');
+        Schema::dropIfExists('niveaux');
     }
 };

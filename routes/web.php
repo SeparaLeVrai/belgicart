@@ -22,12 +22,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [AccueilController::class, 'index'])->name('home');
 Route::get('/users', [UserController::class, 'index'])->name('users');
 Route::get('/users/{pseudo}', [UserController::class, 'show'])->name('users.profile');
-Route::get('/quizz/relief', [QuizzController::class, 'relief'])->name('relief');
-Route::get('/maps/relief', [MapsController::class, 'relief'])->name('mRelief');
+Route::get('/quizz', [QuizzController::class, 'quizz'])->name('quizz');
+Route::get('/maps', [MapsController::class, 'maps'])->name('maps');
 
 Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::resource('users', AdminController::class);
 });
+
+Route::delete('/admin/users/{users}', [AdminController::class, 'destroy'])->name('users.destroy');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -36,6 +38,7 @@ Route::get('/dashboard', function () {
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::patch('/profile/avatar', [ProfileController::class, 'updateAvatar'])->name('avatar.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
