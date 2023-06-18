@@ -19,8 +19,8 @@ class DatabaseSeeder extends Seeder
             NiveauSeeder::class,
             PaysSeeder::class,
             UserSeeder::class,
-            ReponseSeeder::class,
             QuestionSeeder::class,
+            SlideSeeder::class,
         ]);
     }
 }

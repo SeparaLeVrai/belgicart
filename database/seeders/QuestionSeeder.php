@@ -16,8 +16,8 @@ class QuestionSeeder extends Seeder
         $questions = [
             [
                 'question' => 'Quel est le point culminant de la Belgique ?',
-                'reponse1_id' => 1,
-                'reponse2_id' => 2,
+                'reponse1' => 'Signal de Botrange',
+                'reponse2' => 'Baraque Michel',
                 'categorie_id' => 1,
                 'difficulte_id' => 1,
             ],

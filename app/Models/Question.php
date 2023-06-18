@@ -14,11 +14,6 @@ class Question extends Model
         'categorie_id',
     ];
 
-    public function reponse()
-    {
-        return $this->hasMany(Reponse::class);
-    }
-
     public function difficultes(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Difficulte::class, 'difficulte_id')->withDefault(['level', 'Débutant']);

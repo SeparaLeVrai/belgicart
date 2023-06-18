@@ -17,7 +17,6 @@ class UserSeeder extends Seeder
             'pseudo' => 'Separa',
             'email' => 'carrenicolas18@gmail.com',
             'password' => Hash::make('test'),
-            'avatar' => '/storage/avatar/pika.ping',
             'pays_id' => 2,
             'niveau_id' => 1,
         ]);
@@ -26,7 +25,23 @@ class UserSeeder extends Seeder
             'pseudo' => 'test',
             'email' => 'testuser@gmail.com',
             'password' => Hash::make('test'),
-            'pays_id' => 2,
+            'pays_id' => 5,
+            'niveau_id' => 2,
+        ]);
+
+        \App\Models\User::create([
+            'pseudo' => 'testJohnny',
+            'email' => 'testuser2@gmail.com',
+            'password' => Hash::make('test'),
+            'pays_id' => 4,
+            'niveau_id' => 2,
+        ]);
+
+        \App\Models\User::create([
+            'pseudo' => 'testCrash',
+            'email' => 'testuser3@gmail.com',
+            'password' => Hash::make('test'),
+            'pays_id' => 6,
             'niveau_id' => 2,
         ]);
     }

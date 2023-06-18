@@ -12,6 +12,8 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
 
@@ -32,33 +34,26 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
+
+
     public function store(Request $request): RedirectResponse
     {
-        // $request->validate([
-        //     'pseudo' => ['required', 'string', 'min:4', 'max:20'],
-        //     'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
-        //     'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        //     // 'avatar' => ['image', 'mimes:png, jpeg, jpg', 'max:400'],
-        //     'niveau_id' => ['required'],
-        // ]);
 
-
-        // $user = User::create([
-        //     'pseudo' => $request->pseudo,
-        //     'email' => $request->email,
-        //     'password' => Hash::make($request->password),
-        //     // 'pays_id' => $request->pays,
-        //     'niveau_id' => 2,
-        // ]);
-
-        // if ($request->hasFile('avatar')) {
-        //     $avatarPath = $request->file('avatar')->store('images', 'public');
-        //     $user->avatar = $avatarPath;
-        // }
-
-        // $filename = time() . '.' . $request->file('img')->extension();
+        $request->validate([
+            'pseudo' => ['required', 'string', 'min:4', 'max:20', 'unique:' . User::class],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'avatar' => ['nullable', 'image', 'mimes:jpg,png,gif,jpeg', 'max:400'],
+            // 'niveau_id' => ['required'],
+        ]);
 
         $user = new User();
+        if ($request->hasFile('avatar')) {
+            $path = Storage::url($request->file('avatar')->store('avatar', 'public'));
+        } else {
+            $path = null;
+        }
+        $user->avatar = $path;
         $user->pseudo = $request->input('pseudo');
         $user->email = $request->input('email');
         $user->password = Hash::make($request->password);
@@ -66,7 +61,6 @@ class RegisteredUserController extends Controller
         $user->niveau_id = 2;
 
         // dd($request);
-        // $user->img_path = $request->file('img')->storeAs('images', $filename, 'public');
 
         $user->save();
 

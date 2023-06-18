@@ -41,7 +41,7 @@ class ProfileController extends Controller
 
     public function updateAvatar(AvatarUpdateRequest $request): RedirectResponse
     {
-        $path = Storage::url($request->file('avatar')->store('images', 'public'));
+        $path = Storage::url($request->file('avatar')->store('avatar', 'public'));
 
         $request->user()->avatar = $path;
         $request->user()->save();

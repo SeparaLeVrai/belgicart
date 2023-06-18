@@ -13,7 +13,10 @@ return new class extends Migration
     {
         Schema::create('pays', function (Blueprint $table) {
             $table->id();
-            $table->enum('pays', \App\Models\Pays::pays());
+            $table->enum('paysFr', \App\Models\Pays::paysFr());
+            $table->enum('paysEn', \App\Models\Pays::paysEn());
+            $table->enum('paysNl', \App\Models\Pays::paysNl());
+            $table->enum('paysDe', \App\Models\Pays::paysDe());
             $table->timestamps();
         });
     }

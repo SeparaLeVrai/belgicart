@@ -16,7 +16,7 @@ class CheckAdmin
 
     public function handle($request, Closure $next)
     {
-        if (auth()->check() && auth()->user()->niveau_id === 2) {
+        if (auth()->check() && auth()->user()->niveau_id !== 1) {
             return redirect('/');
         }
 

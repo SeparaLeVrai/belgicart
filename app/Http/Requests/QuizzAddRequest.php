@@ -23,8 +23,8 @@ class QuizzAddRequest extends FormRequest
     {
         return [
             'question' => ['required', 'unique:questions', 'max:255', 'regex:/\?$/'],
-            // 'rep1' => ['required', 'unique:reponse'],
-            // 'rep2' => ['required', 'unique:reponse'],
+            'reponse1' => ['required', 'max:100'],
+            'reponse2' => ['required', 'max:100'],
         ];
     }
 }

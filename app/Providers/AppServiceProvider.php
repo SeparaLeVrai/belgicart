@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\Pays;
+use App\Models\Slides;
+use App\Models\User;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +22,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        view()->share('countries', Pays::all());
+        view()->share('sliders', Slides::all());
+        view()->share('users', User::all());
     }
 }

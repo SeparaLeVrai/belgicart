@@ -3,13 +3,17 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AnswerAddRequest;
 use App\Http\Requests\QuizzAddRequest;
 use App\Models\Categories;
 use App\Models\Difficulte;
 use App\Models\Question;
+use App\Models\Reponse;
+use App\Models\Slides;
 use App\Models\User;
 use Illuminate\Auth\Access\Gate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
@@ -41,13 +45,8 @@ class AdminController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(QuizzAddRequest $request)
+    public function storeQuizz(QuizzAddRequest $request)
     {
-
-        // $categories = Categories::all();
-        // $questions = Question::all();
-
-        // dd($categories, $questions);
 
         $quizz = $request->validated();
 
@@ -55,31 +54,35 @@ class AdminController extends Controller
         $quizz->question = $request->input('question');
         $quizz->categorie_id = $request->input('categorie_id');
         $quizz->difficulte_id = $request->input('difficulte_id');
-        $quizz->reponse1_id = 1;
-        $quizz->reponse2_id = 2;
+        $quizz->reponse1 = $request->input('reponse1');
+        $quizz->reponse2 = $request->input('reponse2');
+
+        if ($quizz->reponse1 == $quizz->reponse2) {
+            return redirect()->back()->withErrors(['reponse2' => 'Les 2 réponses ne peuvent pas être identiques']);
+        }
 
         $quizz->save();
         return redirect()->back();
+    }
 
-        // $categorie = Categories::where('nom', $request->input('categorie'))->firstOrFail();
-        // $difficulte = Difficulte::where('level', $request->input('difficulte'))->firstOrFail();
+    public function storeImg(Request $request)
+    {
+        $img = $request->validate([
+            'img' => ['image', 'mimes:png,jpeg,jpg'],
+        ]);
 
-        // $quizz = Question::create([
-        //     'question' => $request->question,
-        //     'categorie_id' => $categorie->id,
-        //     'difficulte_id' => $difficulte->id,
-        // ]);
+        $img = new Slides();
 
-        // $quizz->reponses()->createMany(
-        //     [
-        //         'text' => $request->input('rep1'),
-        //         'good_answer' => true,
-        //     ],
-        //     [
-        //         'text' => $request->input('rep2'),
-        //         'good_answer' => false,
-        //     ]
-        // );
+        if ($request->hasFile('img')) {
+            $path = Storage::url($request->file('img')->store('images', 'public'));
+        } else {
+            $path = null;
+        }
+
+        $img->path = $path;
+
+        $img->save();
+        return redirect()->back();
     }
 
     /**

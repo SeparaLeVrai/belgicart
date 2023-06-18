@@ -12,6 +12,9 @@ module.exports = {
         extend: {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                display: ['Red Hat Display', 'sans-serif'],
+                classic: ['Montserrat', 'sans-serif'],
+                title: ['Quicksand', 'sans-serif'],
             },
         },
     },

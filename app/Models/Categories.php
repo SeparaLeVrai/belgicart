@@ -9,6 +9,11 @@ class Categories extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'text',
+        'good_answer',
+    ];
+
     public const RELIEF = 'Relief';
     public const HYDROGRAPHIE = 'Hydrographie';
     public const MONUMENTS = 'Monuments';
